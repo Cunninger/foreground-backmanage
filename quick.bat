@@ -4,7 +4,7 @@ REM 添加所有改动到暂存区
 git add .
 
 REM 提交改动
-git commit -m "集成AI对话和算法平台查询"
+git commit -m "add: redis保存聊天信息"
 
 REM 推送改动到远程仓库
 git push origin master
