@@ -10,11 +10,13 @@
     "axios": "^1.7.2",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.14",
+    "marked": "^12.0.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@babel/plugin-transform-private-methods": "^7.24.6",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",

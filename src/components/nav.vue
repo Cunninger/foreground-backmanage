@@ -86,6 +86,16 @@
             <span slot="title">用户管理</span>
           </el-menu-item>
 
+          <el-menu-item index="5" @click="goPage('algoritms')">
+            <i class="el-icon-trophy"></i>
+            <span slot="title">算法查询</span>
+          </el-menu-item>
+
+          <el-menu-item index="6" @click="goPage('aichat')">
+            <i class="el-icon-chat-dot-square"></i>
+            <span slot="title">AI问答</span>
+          </el-menu-item>
+
 
 
         </el-menu>
@@ -115,7 +125,9 @@ export default {
         test3_3: '/test3_3',
         test3_4: '/test3_4',
         user: '/user',
-        editor: '/editor'
+        editor: '/editor',
+        algoritms: '/algoritms',
+        aichat: '/aichat'
       };
 
       const path = routes[link];

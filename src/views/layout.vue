@@ -39,7 +39,7 @@
 </template>
 
 
-<script>
+<script scoped>
 import navtop from "@/components/nav-top.vue";
 import leftNav from "@/components/nav.vue";
 export default {
