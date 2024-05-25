@@ -9,12 +9,10 @@
         <el-button @click="openNewUserDialog">添加用户</el-button>
       </el-col>
     </el-row>
-    <el-table :data="users" style="width: 100%" height="100%">
+    <el-table class="eltable" :data="users" stripe :header-cell-style="{ backgroundColor: 'aliceblue', color: '#666'}">
       <el-table-column prop="userId" label="用户ID"></el-table-column>
-      <el-table-column prop="password" label="密码" :show-overflow-tooltip="true"></el-table-column>
-    
       <el-table-column prop="username" label="用户名"></el-table-column>
-    
+      <el-table-column prop="password" label="密码" :show-overflow-tooltip="true"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="editUser(scope.row)">编辑</el-button>
@@ -22,10 +20,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination @current-change="handlePageChange" :current-page="currentPage" :page-size="pageSize"
-      layout="total, prev, pager, next" :total="totalUsers">
-    </el-pagination>
-
     <!-- 用户编辑对话框 -->
     <el-dialog title="编辑用户" :visible.sync="dialogVisible">
       <el-form :model="editFormData">
@@ -49,41 +43,24 @@ export default {
     return {
       users: [],
       searchQuery: '',
-      currentPage: 1,
-      pageSize: 10,
-      totalUsers: 0,
       dialogVisible: false,
       editFormData: {},
     };
   },
   methods: {
     fetchUsers() {
-  this.$axios.get('/api/users', {
-    params: {
-      search: this.searchQuery,
-      page: this.currentPage,
-      pageSize: this.pageSize,
-    }
-  }).then(response => {
-    console.log('Response data:', response.data);  // 显示返回的整个数据
-    if (response.data && response.data.users) {
-      this.users = response.data.users;
-      this.totalUsers = response.data.total;
-      console.log('Assigned users:', this.users);  // 显示赋值后的用户数据
-    } else {
-      console.error('Data format is incorrect:', response.data);
-    }
-  }).catch(error => {
-    console.error('Error fetching users:', error);
-  });
-},
-
+      this.$axios.get('/api/users', {
+        params: {
+          search: this.searchQuery,
+        }
+      }).then(response => {
+        this.users = response.data.users;
+      }).catch(error => {
+        console.error('Error fetching users:', error);
+      });
+    },
     resetSearch() {
       this.searchQuery = '';
-      this.fetchUsers();
-    },
-    handlePageChange(page) {
-      this.currentPage = page;
       this.fetchUsers();
     },
     editUser(user) {
@@ -91,7 +68,7 @@ export default {
       this.dialogVisible = true;
     },
     saveUser() {
-      const method = this.editFormData.userId ? 'put' : 'post';
+      const method = this.editFormData.userId ? 'post' : 'put';
       const url = this.editFormData.userId ? `/api/users/${this.editFormData.userId}` : '/api/users';
       this.$axios[method](url, this.editFormData).then(() => {
         this.$message({
@@ -134,6 +111,9 @@ export default {
 </script>
 
 <style scoped>
-
+.eltable {
+  margin-top: 30px;
+  margin-right: 20px;
+  height: auto;
+}
 </style>
-/*
