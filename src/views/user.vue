@@ -68,7 +68,7 @@ export default {
       this.dialogVisible = true;
     },
     saveUser() {
-      const method = this.editFormData.userId ? 'post' : 'put';
+      const method = this.editFormData.userId ? 'put' : 'post';
       const url = this.editFormData.userId ? `/api/users/${this.editFormData.userId}` : '/api/users';
       this.$axios[method](url, this.editFormData).then(() => {
         this.$message({

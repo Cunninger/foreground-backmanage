@@ -9,7 +9,7 @@
       <!-- Nowcoder -->
       <div class="box">
         <img v-if="showNowCoderImage" :src="nowcoder.avatarUrl" height="90px" width="90px" alt="" />
-  
+
         <div class="title">Nowcoder</div>
         <div class="input">
           <input type="text" v-model="NowCodertempValue" @keyup.enter="showNowCoderContent" />
@@ -21,8 +21,10 @@
             <span class="text">RatingRank: <strong style="color: black;">{{ nowcoder.ratingRank }}</strong> </span>
           </div>
           <div class="right">
-            <span class="text">CompetitionCount: <strong style="color: black;">{{ nowcoder.competitionCount }}</strong></span>
-            <span class="text">HasPassedProblem: <strong style="color: black;">{{ nowcoder.hasPassedProblem }}</strong> </span>
+            <span class="text">CompetitionCount: <strong style="color: black;">{{ nowcoder.competitionCount
+                }}</strong></span>
+            <span class="text">HasPassedProblem: <strong style="color: black;">{{ nowcoder.hasPassedProblem }}</strong>
+            </span>
           </div>
         </div>
       </div>
@@ -60,7 +62,7 @@
         <div class="attribute">
           <div class="left">
             <span class="text">fans: <strong style="color: black;">{{ luogu.fans }}</strong></span>
-            <span class="text">hasSumbitted: <strong style="color: black;">{{ luogu.hasSumbitted}}</strong></span>
+            <span class="text">hasSumbitted: <strong style="color: black;">{{ luogu.hasSumbitted }}</strong></span>
           </div>
           <div class="right">
             <span class="text">hasPassed: <strong style="color: black;">{{ luogu.hasPassed }}</strong></span>
@@ -71,7 +73,7 @@
 
 
 
-      
+
 
       <div class="box"></div>
       <div class="box"></div>
@@ -120,7 +122,7 @@ export default {
   methods: {
     showNowCoderContent() {
       this.showNowCoderImage = true;
-      this.$http.get('/api/nowcoder/info/' + this.NowCodertempValue)
+      this.$axios.get('/api/nowcoder/info/' + this.NowCodertempValue)
         .then(response => {
           this.nowcoder.rating = response.data.rating
           this.nowcoder.ratingRank = response.data.ratingRank
@@ -128,7 +130,7 @@ export default {
           this.nowcoder.hasPassedProblem = response.data.hasPassedProblem
           this.nowcoder.avatarBase64 = response.data.avatar
           this.nowcoder.avatarUrl = 'data:image/png;base64,' + this.nowcoder.avatarBase64
-        
+
 
         })
         .catch(error => {
@@ -138,7 +140,7 @@ export default {
     // --------------------------------------------
     showLeetCoderContent() {
       this.showLeetCodeImage = true;
-      this.$http.get('/api/leetcode/info/' + this.LeetCodetempValue)
+      this.$axios.get('/api/leetcode/info/' + this.LeetCodetempValue)
         .then(response => {
           // this.nowcoder = response.data
           this.leetcode.easy_solved = response.data.easy_solved
@@ -156,9 +158,9 @@ export default {
 
     showLuoguContent() {
       this.showLuoguImage = true;
-      this.$http.get('/api/luogu/info/' + this.LuoGutempValue)
+      this.$axios.get('/api/luogu/info/' + this.LuoGutempValue)
         .then(response => {
-         
+
           this.luogu.fans = response.data.fans
           this.luogu.hasSumbitted = response.data.hasSumbitted
           this.luogu.hasPassed = response.data.hasAccepted
@@ -256,5 +258,3 @@ export default {
   color: #A9A9A9
 }
 </style>
-
-

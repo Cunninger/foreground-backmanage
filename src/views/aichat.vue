@@ -60,7 +60,7 @@ export default {
             content: '',
             messages: [],
             model: 'mixtral-8x7b-32768',
-            accessToken: 'xxx',
+            accessToken: 'xxxx',
             currentMessage: '', // 当前正在流式输出的消息
             typeSpeed: 30, // 每个字符的打字速度（毫秒）
         }

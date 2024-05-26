@@ -11,12 +11,16 @@
     "core-js": "^3.8.3",
     "element-ui": "^2.15.14",
     "marked": "^12.0.2",
+    "quill-image-drop-module": "^1.0.3",
+    "quill-image-resize-module": "^3.0.0",
     "vue": "^2.6.14",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-private-methods": "^7.24.6",
+    "@types/quill": "^2.0.14",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
