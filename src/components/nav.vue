@@ -1,38 +1,3 @@
-<!-- 左边的导航 -->
-<style scoped>
-.el-row {
-  height: 100%;
-}
-
-.el-menu-vertical-demo .el-menu-item span {
-  color: #BFCBD9;
-  /* Change color to white */
-  font-family: 'Arial', sans-serif;
-  /* Change font style */
-  font-size: 14px;
-  /* Optional: Change font size */
-}
-
-/* Additional styling for submenu titles */
-.el-menu-vertical-demo .el-submenu__title span {
-  color: #BFCBD9;
-  /* Change color to gold */
-  font-weight: bold;
-  /* Make font bold */
-}
-
-.el-menu {
-  border-right: none;
-  background-color: #304156;
-  /* 添加这行 */
-}
-
-.el-aside {
-  border-right: 1px solid #f5f1f1;
-  background-color: #304156;
-  /* 添加这行 */
-}
-</style>
 
 <template>
   <el-aside :width="isCollapsed ? '53.5px' : '242px'">
@@ -138,3 +103,39 @@ export default {
   }
 };
 </script>
+
+<!-- 左边的导航 -->
+<style scoped>
+.el-row {
+  height: 100%;
+}
+
+.el-menu-vertical-demo .el-menu-item span {
+  color: #BFCBD9;
+  /* Change color to white */
+  font-family: 'Arial', sans-serif;
+  /* Change font style */
+  font-size: 14px;
+  /* Optional: Change font size */
+}
+
+/* Additional styling for submenu titles */
+.el-menu-vertical-demo .el-submenu__title span {
+  color: #BFCBD9;
+  /* Change color to gold */
+  font-weight: bold;
+  /* Make font bold */
+}
+
+.el-menu {
+  border-right: none;
+  background-color: #304156;
+  /* 添加这行 */
+}
+
+.el-aside {
+  border-right: 1px solid #f5f1f1;
+  background-color: #304156;
+  /* 添加这行 */
+}
+</style>

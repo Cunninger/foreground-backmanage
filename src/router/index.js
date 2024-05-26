@@ -20,7 +20,7 @@ import Pre from '@/views/pre/index'
 import Register from '@/views/register/index'
 
 import Personcentre from '@/views/profile/personcentre'
-
+import Home from '@/frontend/views/Home.vue';
 import Setting from '@/views/profile/setting'
 Vue.use(Router)
 const originalPush = Router.prototype.push
@@ -29,6 +29,12 @@ Router.prototype.push = function push(location) {
 }
 export default new Router({
   routes: [
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    }
+    ,
     {
       path: '/',
       name: 'Pre',

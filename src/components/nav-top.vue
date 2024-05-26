@@ -31,6 +31,7 @@ section {
 
       <img class="logo" src="@/assets/imgs/logo.png" alt="Logo" />
       <el-button @click="toggleSidebar">{{ isCollapsed ? '展开' : '收起' }}</el-button>
+      <el-button icon="el-icon-s-home" class="logo" @click="goPage('home')"></el-button>
     </el-aside>
 
     <el-aside width="auto" class="header-logo tap">
@@ -63,6 +64,7 @@ export default {
       const routes = {
         personcentre: '/personcentre',
         setting: '/setting',
+        home: '/home',
   
       };
 
