@@ -6,19 +6,22 @@
         <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
 
           <el-menu-item index="1" @click="goPage('home')">
-            <i class="el-icon-menu"></i>
-            <span slot="title">后台中心</span>
+            <span v-if="!isCollapsed" slot="title">后台中心</span>
+            <!-- <i class="el-icon-menu" :style="{'display' : isCollapsed ? 'inline-block' : 'none'}"></i> -->
+            <i class="el-icon-menu" :style='inline-block'></i>
+
           </el-menu-item>
 
           <el-menu-item index="2" @click="goPage('order')">
-            <i class="el-icon-s-order"></i>
-            <span slot="title">订单列表</span>
+            <span v-if="!isCollapsed" slot="title">订单列表</span>
+            <i class="el-icon-s-order" :style='inline-block'></i>
           </el-menu-item>
 
           <el-submenu index="3">
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>测试3</span>
+   
+              <i class="el-icon-location" :style='inline-block'></i>
+              <span v-if="!isCollapsed">测试3</span>  
             </template>
             <el-menu-item-group>
               <el-menu-item index="3-1" @click="goPage('test3_1')">测试3-1</el-menu-item> <!-- 添加这行 -->
@@ -39,26 +42,29 @@
 
           </el-submenu>
 
+  
 
-          <el-menu-item index="2" @click="goPage('editor')">
-            <i class="el-icon-s-order"></i>
-            <span slot="title">编辑</span>
-          </el-menu-item>
 
 
           <el-menu-item index="4" @click="goPage('user')">
-            <i class="el-icon-user"></i>
-            <span slot="title">用户管理</span>
+            <span v-if="!isCollapsed" slot="title">用户管理</span>
+            <i class="el-icon-user" :style='inline-block'></i>
           </el-menu-item>
 
           <el-menu-item index="5" @click="goPage('algoritms')">
-            <i class="el-icon-trophy"></i>
-            <span slot="title">算法查询</span>
+            <span v-if="!isCollapsed" slot="title">算法查询</span>
+            <i class="el-icon-trophy" :style='inline-block'></i>
           </el-menu-item>
 
           <el-menu-item index="6" @click="goPage('aichat')">
-            <i class="el-icon-chat-dot-square"></i>
-            <span slot="title">AI问答</span>
+            <span v-if="!isCollapsed" slot="title">AI问答</span>
+            <i class="el-icon-chat-dot-square" :style='inline-block'></i>
+          </el-menu-item>
+
+
+          <el-menu-item index="7" @click="goPage('editor')">
+            <span v-if="!isCollapsed" slot="title">文本编辑</span>
+            <i class="el-icon-edit" :style='inline-block'></i>
           </el-menu-item>
 
 
@@ -139,3 +145,4 @@ export default {
   /* 添加这行 */
 }
 </style>
+
