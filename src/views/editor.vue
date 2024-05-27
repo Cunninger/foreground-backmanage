@@ -30,6 +30,8 @@ import * as Quill from 'quill'
 import Video from './video'
 Quill.register(Video, true)
 
+// 富文本框配置
+
 //获取登录token，引入文件，如果只是简单测试，没有上传文件是否登录的限制的话，
 //这个token可以不用获取，文件可以不引入，把上面对应的上传文件携带请求头  :headers="headers" 这个代码删掉即可
 
