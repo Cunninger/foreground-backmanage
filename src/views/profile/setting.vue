@@ -1,23 +1,19 @@
 <template>
-    <div>
-        <el-container>
-            <el-header>Header</el-header>
-            <el-main>Main Content</el-main>
-            <el-footer>Footer</el-footer>
-        </el-container>
-    </div>
+    <el-card class="profile-card">
+
+    </el-card>
 </template>
 
 <script>
 export default {
-    name: 'Setting',
+    name: 'ProfileCard'
 }
 </script>
 
-<style>
-.rectangle {
-    border: 1px solid black;
-    width: 100px;
-    height: 50px;
+<style scoped>
+.profile-card {
+    height: 500px;
+    width: 300px;
+    margin: 0 auto;
 }
 </style>

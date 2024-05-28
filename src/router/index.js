@@ -22,6 +22,7 @@ import Register from '@/views/register/index'
 import Personcentre from '@/views/profile/personcentre'
 import Home from '@/frontend/views/Home.vue';
 import Setting from '@/views/profile/setting'
+import Discuss  from '@/frontend/views/header/discuss'
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -29,6 +30,13 @@ Router.prototype.push = function push(location) {
 }
 export default new Router({
   routes: [
+    {
+      path: '/discuss',
+      name: 'Discuss',
+      component: Discuss
+    }
+    ,
+    
     {
       path: '/home',
       name: 'Home',

@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="content">
     <el-row :gutter="-10">
       <el-col :span="24">
@@ -22,6 +23,8 @@
         </el-card>
       </el-col>
     </el-row>
+  </div>
+  <router-view></router-view>
   </div>
 </template>
 

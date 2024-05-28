@@ -13,9 +13,14 @@
             <el-menu-item index="5">生活记录</el-menu-item>
           </el-menu>
         </el-col>
-        <el-col :span="6" class="align-right">
+        
+        <el-col :span="5" class="align-right">
+          <el-button type="info" @click="goToDiscuss">聊天室</el-button>
           <el-button type="primary" @click="goToAdmin">返回后台</el-button>
         </el-col>
+  
+
+   
       </el-row>
     </div>
   </template>
@@ -37,6 +42,9 @@
         // 这里使用示例 URL，实际使用时请根据需求修改
         this.$router.push('/layout'); // 跳转到后台管理页面
       },
+      goToDiscuss(){
+        this.$router.push('/discuss');
+      }
     },
   };
   </script>

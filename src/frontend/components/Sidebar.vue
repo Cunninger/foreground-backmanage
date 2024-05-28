@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="sidebar">
     <el-card class="box-card" v-for="post in posts" :key="post.id">
       <div slot="header" class="clearfix">
@@ -10,6 +11,8 @@
       </div>
     </el-card>
   </div>
+  <router-view name="Sidebar"></router-view>
+</div>
 </template>
 
 <script>
