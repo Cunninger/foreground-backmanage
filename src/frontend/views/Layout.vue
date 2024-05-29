@@ -1,0 +1,44 @@
+<template>
+  <el-container>
+    <!-- header部分 -->
+    <el-header>
+      <Header></Header>
+    </el-header>
+
+    <el-container>
+      <el-main>
+        <!-- main部分 -->
+        <router-view />
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<script>
+import Header from "@/frontend/components/Header.vue";
+export default {
+  name: "Layout",
+  components: {
+    Header,
+  },
+};
+</script>
+
+<style scoped>
+.el-main {
+  /* 主面板颜色 */
+  background-color: #f5f7f9;
+}
+
+.el-header,
+.el-footer {
+  /* 顶部颜色 */
+  background-color: white;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f5f1f1;
+}
+
+.el-container {
+  height: 100%;
+}
+</style>

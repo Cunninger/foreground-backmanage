@@ -22,7 +22,9 @@ import Register from '@/views/register/index'
 import Personcentre from '@/views/profile/personcentre'
 import Home from '@/frontend/views/Home.vue';
 import Setting from '@/views/profile/setting'
-import Discuss  from '@/frontend/views/header/discuss'
+import Discuss from '@/frontend/views/header/discuss'
+import Aboutme from '@/frontend/views/aboutme/index'
+import FLayout from '@/frontend/views/Layout'
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -30,17 +32,30 @@ Router.prototype.push = function push(location) {
 }
 export default new Router({
   routes: [
-    {
-      path: '/discuss',
-      name: 'Discuss',
-      component: Discuss
-    }
-    ,
-    
+
+
     {
       path: '/home',
-      name: 'Home',
-      component: Home
+      name: 'FLayout',
+      component: FLayout,
+      children: [
+        {
+          path: '/home',
+          name: 'Home',
+          component: Home
+        },
+        {
+          path: '/aboutme',
+          name: 'Aboutme',
+          component: Aboutme
+        },
+        {
+          path: '/discuss',
+          name: 'Discuss',
+          component: Discuss
+        }
+        ,
+      ]
     }
     ,
     {
@@ -91,11 +106,11 @@ export default new Router({
         path: '/test3_3',
         name: 'Test3_3',
         component: Test3_3
-      },{
-      path: '/test3_4',
-      name: 'Test3_4',
-      component: Test3_4
-    },
+      }, {
+        path: '/test3_4',
+        name: 'Test3_4',
+        component: Test3_4
+      },
       {
         path: '/user',
         name: 'User',
