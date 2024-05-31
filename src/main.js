@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
  import 'quill/dist/quill.core.css'
  import 'quill/dist/quill.snow.css'
  import 'quill/dist/quill.bubble.css'
+ 
  Vue.use(VueQuillEditor)
  
  //实现quill-editor编辑器拖拽上传图片

@@ -60,11 +60,12 @@ export default {
             content: '',
             messages: [],
             model: 'mixtral-8x7b-32768',
-            accessToken: 'xxx',
+            accessToken: 'M3UqqyTBhMy85WwoZ_IMtz0XQsfoYLX_VJi0uZN5WMID',
             currentMessage: '', // 当前正在流式输出的消息
             typeSpeed: 30, // 每个字符的打字速度（毫秒）
         }
     },
+
     methods: {
         async sendRequest() {
             try {

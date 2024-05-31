@@ -7,7 +7,12 @@ module.exports = defineConfig({
         { 'window.Quill': 'quill/dist/quill.js',
          'Quill': 'quill/dist/quill.js' 
         })
-    ]
+    ],
+    resolve: {
+      fallback: {
+        net: false
+      }
+    }
   },
   transpileDependencies: true,
   devServer: {
