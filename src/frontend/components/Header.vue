@@ -2,9 +2,9 @@
 
 
   <div class="header">
-    <el-row :gutter="20">
+    <el-row :gutter="10">
       <el-col :span="6">
-        <h1>游晓竹的Blog</h1>
+        <d1 style="text-align: right; font-size: 30px;">游晓竹Blog</d1>
       </el-col>
       <el-col :span="12">
         <el-menu mode="horizontal" :default-active="activeIndex" class="el-menu-demo" @select="handleSelect">
@@ -60,7 +60,7 @@ export default {
       this.$router.push('/layout').catch(error => error);
     },
     goToDiscuss() {
-      this.$router.push('/discuss').catch(error => error);
+      this.$router.push('/logindiscuss').catch(error => error);
     }
   }
 };
@@ -69,7 +69,7 @@ export default {
 <style scoped>
 .header {
   background-color: #b9bbbc;
-  padding: 20px;
+  padding: 0px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 h1 {

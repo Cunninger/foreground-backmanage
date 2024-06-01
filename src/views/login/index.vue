@@ -50,6 +50,13 @@ export default {
             })
                 .then((res) => {
                     if (res.data.code === 200) {
+                        const userInfo = {
+                            username: this.form.username,
+                            password: this.form.password
+                        };
+                        sessionStorage.setItem("user", JSON.stringify(userInfo));
+                        this.user = userInfo;
+                        
                         this.$message({
                             type: 'success',
                             message: '登录成功'
