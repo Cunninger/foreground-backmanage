@@ -53,7 +53,7 @@
 
       <!-- Luogu -->
       <div class="box">
-        <img v-if="showLuoguImage" :src="luogu.avatarUrl" height="90px" width="90px" alt="" />
+        <img v-if="showLuoguImage" :src="luogu.avatarUrl" height="90px" width="100px" alt="" />
         <div class="title">Luogu</div>
         <div class="input">
           <input type="text" v-model="LuoGutempValue" @keyup.enter="showLuoguContent" />
@@ -187,14 +187,14 @@ export default {
 .head {
   width: 100%;
   height: 80px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px rgba(55, 54, 54, 0.2);
   border-radius: 10px;
   display: flex;
   justify-content: flex-start;
 }
 
 .xx {
-  color: #A9A9A9;
+  color: #a9a9a9;
   font-size: 20px;
   font-weight: bold;
   margin-top: 20px;
@@ -249,7 +249,7 @@ export default {
 .right {
   display: flex;
   flex-direction: column;
-  margin-left: 120px;
+  margin-left: 100px;
 }
 
 .text {

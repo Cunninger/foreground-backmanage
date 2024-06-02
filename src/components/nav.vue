@@ -12,8 +12,8 @@
 
           </el-menu-item>
 
-          <el-menu-item index="2" @click="goPage('order')">
-            <span v-if="!isCollapsed" slot="title">订单列表</span>
+          <el-menu-item index="2" @click="goPage('myblog')">
+            <span v-if="!isCollapsed" slot="title">我的博客</span>
             <i class="el-icon-s-order" :style='inline-block'></i>
           </el-menu-item>
 
@@ -24,16 +24,16 @@
               <span v-if="!isCollapsed">测试3</span>  
             </template>
             <el-menu-item-group>
-              <el-menu-item index="3-1" @click="goPage('test3_1')">测试3-1</el-menu-item> <!-- 添加这行 -->
+              <el-menu-item index="3-1" @click="goPage('cnt')">chatnextweb</el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
 
             <el-menu-item-group>
-              <el-menu-item index="3-2" @click="goPage('test3_2')">测试3-2</el-menu-item> <!-- 添加这行 -->
+              <el-menu-item index="3-2" @click="goPage('aidraw')">AI绘画</el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
           
 
             <el-menu-item-group>
-              <el-menu-item index="3-3" @click="goPage('test3_3')">测试3-3</el-menu-item> <!-- 添加这行 -->
+              <el-menu-item index="3-3" @click="goPage('piclibrary')">AI图库</el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
 
             <el-menu-item-group>
@@ -89,11 +89,11 @@ export default {
     goPage(link) {
       const routes = {
         home: '/layout',
-        order: '/order',
+        myblog: '/myblog',
         test3: '/test3',
-        test3_1: '/test3_1',
-        test3_2: '/test3_2',
-        test3_3: '/test3_3',
+        cnt: '/cnt',
+        aidraw: '/aidraw',
+        piclibrary: '/piclibrary',
         test3_4: '/test3_4',
         user: '/user',
         editor: '/editor',

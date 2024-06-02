@@ -1,7 +1,7 @@
 <template>
     <div>
       <!-- 其他内容 -->
-      <iframe class="xxx"  src="http://35.234.40.225:8080/" frameborder="0"></iframe>
+      <iframe class="xxx"  src="https://memo.yamazing.cn/" frameborder="0"></iframe>
       <!-- 其他内容 -->
     </div>
   </template>

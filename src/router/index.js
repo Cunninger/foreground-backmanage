@@ -4,10 +4,10 @@ import Router from 'vue-router'
 import Centre from '@/views/centre'
 
 // 侧边栏
-import Order from '@/views/order'
-import Test3_1 from '@/views/test/test3_1'
-import Test3_2 from '@/views/test/test3_2'
-import Test3_3 from '@/views/test/test3_3'
+import Myblog from '@/views/myblog'
+import Cnt from '@/views/cnt'
+import Aidraw from '@/views/aidraw'
+import Piclibrary from '@/views/piclibrary'
 import Test3_4 from '@/views/test/test3_4'
 import User from '@/views/user'
 import Editor from '@/views/editor'
@@ -90,9 +90,9 @@ export default new Router({
         component: Centre
       },
       {
-        path: '/order',
-        name: 'Order',
-        component: Order
+        path: '/myblog',
+        name: 'Myblog',
+        component: Myblog
       },
       {
         path: '/editor',
@@ -100,19 +100,19 @@ export default new Router({
         component: Editor
       },
       {
-        path: '/test3_1',
-        name: 'Test3_1',
-        component: Test3_1
+        path: '/cnt',
+        name: 'Cnt',
+        component: Cnt
       },
       {
-        path: '/test3_2',
-        name: 'Test3_2',
-        component: Test3_2
+        path: '/aidraw',
+        name: 'Aidraw',
+        component: Aidraw
       },
       {
-        path: '/test3_3',
-        name: 'Test3_3',
-        component: Test3_3
+        path: '/piclibrary',
+        name: 'Piclibrary',
+        component: Piclibrary
       }, {
         path: '/test3_4',
         name: 'Test3_4',
