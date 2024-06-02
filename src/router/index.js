@@ -22,10 +22,10 @@ import Register from '@/views/register/index'
 import Personcentre from '@/views/profile/personcentre'
 import Home from '@/frontend/views/Home.vue';
 import Setting from '@/views/profile/setting'
-import LoginDiscuss from '@/frontend/views/header/logindiscuss'
+import Groupchat from '@/frontend/views/header/groupchat'
 import Aboutme from '@/frontend/views/aboutme/index'
 import FLayout from '@/frontend/views/Layout'
-import Discussroom from '@/frontend/views/header/discussroom.vue'
+import Singlechat from '@/frontend/views/header/singlechat.vue'
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -51,15 +51,15 @@ export default new Router({
           component: Aboutme
         },
         {
-          path: '/discussroom',
-          name: 'Discussroom',
-          component: Discussroom
+          path: '/singlechat',
+          name: 'Singlechat',
+          component: Singlechat
         }
         ,
         {
-          path: '/logindiscuss',
-          name: 'LoginDiscuss',
-          component: LoginDiscuss
+          path: '/groupchat',
+          name: 'Groupchat',
+          component: Groupchat
         }
         ,
       ]

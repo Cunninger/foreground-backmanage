@@ -4,7 +4,7 @@
   <div class="header">
     <el-row :gutter="10">
       <el-col :span="6">
-        <d1 style="text-align: right; font-size: 30px;">游晓竹Blog</d1>
+        <div style="text-align: right; font-size: 30px;">游晓竹Blog</div>
       </el-col>
       <el-col :span="12">
         <el-menu mode="horizontal" :default-active="activeIndex" class="el-menu-demo" @select="handleSelect">
@@ -60,7 +60,7 @@ export default {
       this.$router.push('/layout').catch(error => error);
     },
     goToDiscuss() {
-      this.$router.push('/logindiscuss').catch(error => error);
+      this.$router.push('/groupchat').catch(error => error);
     }
   }
 };
