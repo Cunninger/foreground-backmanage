@@ -23,8 +23,9 @@
               <i class="el-icon-location" :style='inline-block'></i>
               <span v-if="!isCollapsed">测试3</span>  
             </template>
-            <el-menu-item-group>
-              <el-menu-item index="3-1" @click="goPage('cnt')">chatnextweb</el-menu-item> <!-- 添加这行 -->
+            <el-menu-item-group >
+              <el-menu-item index="3-1" @click="goPage('cnt')">
+                chatnextweb</el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
 
             <el-menu-item-group>
@@ -143,6 +144,12 @@ export default {
   border-right: 1px solid #f5f1f1;
   background-color: #304156;
   /* 添加这行 */
+}
+
+/* 测试三下拉目录颜色 */
+.el-menu-item-group {
+  background-color: #a1abb7;
+  font-weight: bold;
 }
 </style>
 
