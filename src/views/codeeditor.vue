@@ -1,7 +1,10 @@
 <template>
   <div class="common-editor">
     <textarea ref="textarea" v-model="value"></textarea>
+
+    <el-button @click="goToRun()">运行</el-button>
   </div>
+
 </template>
 
 <script>
@@ -20,6 +23,7 @@ import 'codemirror/mode/php/php'
 import 'codemirror/mode/python/python'
 import 'codemirror/mode/shell/shell'
 import 'codemirror/mode/powershell/powershell'
+import axios from "axios";
 
 const CodeMirror = require('codemirror/lib/codemirror')
 
@@ -161,7 +165,28 @@ export default {
       const label = this.getLanguage(val).label.toLowerCase()
       // 允许父容器通过以下函数监听当前的语法值
       this.$emit('language-change', label)
+    },
+    goToRun() {
+      // Retrieve the current content from the editor
+      const codeContent = this.coder.getValue();
+
+      // URL of the backend endpoint
+      const endpoint = '/api/codeeditor';
+
+      // Send a POST request with the code content
+      axios.post(endpoint, {
+        code: codeContent
+      })
+          .then(response => {
+            // Handle the response from the server
+            console.log('Server response:', response.data);
+          })
+          .catch(error => {
+            // Handle errors if the request fails
+            console.error('Error sending code:', error);
+          });
     }
+
   }
 }
 </script>
