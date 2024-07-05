@@ -68,6 +68,11 @@
             <i class="el-icon-edit" :style='inline-block'></i>
           </el-menu-item>
 
+          <el-menu-item index="8" @click="goPage('codeeditor')">
+            <span v-if="!isCollapsed" slot="title">代码编辑</span>
+            <i class="el-icon-edit" :style='inline-block'></i>
+          </el-menu-item>
+
 
 
         </el-menu>
@@ -99,7 +104,8 @@ export default {
         user: '/user',
         editor: '/editor',
         algoritms: '/algoritms',
-        aichat: '/aichat'
+        aichat: '/aichat',
+        codeeditor: '/codeeditor'
       };
 
       const path = routes[link];

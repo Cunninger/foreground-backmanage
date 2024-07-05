@@ -26,124 +26,131 @@ import Groupchat from '@/frontend/views/header/groupchat'
 import Aboutme from '@/frontend/views/aboutme/index'
 import FLayout from '@/frontend/views/Layout'
 import Singlechat from '@/frontend/views/header/singlechat.vue'
+import Codeeditor from "@/views/codeeditor.vue";
+
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch(err => err)
 }
 export default new Router({
-  routes: [
+    routes: [
 
 
-    {
-      path: '/home',
-      name: 'FLayout',
-      component: FLayout,
-      children: [
         {
-          path: '/home',
-          name: 'Home',
-          component: Home
-        },
-        {
-          path: '/aboutme',
-          name: 'Aboutme',
-          component: Aboutme
-        },
-        {
-          path: '/singlechat',
-          name: 'Singlechat',
-          component: Singlechat
+            path: '/home',
+            name: 'FLayout',
+            component: FLayout,
+            children: [
+                {
+                    path: '/home',
+                    name: 'Home',
+                    component: Home
+                },
+                {
+                    path: '/aboutme',
+                    name: 'Aboutme',
+                    component: Aboutme
+                },
+                {
+                    path: '/singlechat',
+                    name: 'Singlechat',
+                    component: Singlechat
+                }
+                ,
+                {
+                    path: '/groupchat',
+                    name: 'Groupchat',
+                    component: Groupchat
+                }
+                ,
+            ]
         }
         ,
         {
-          path: '/groupchat',
-          name: 'Groupchat',
-          component: Groupchat
-        }
-        ,
-      ]
-    }
-    ,
-    {
-      path: '/',
-      name: 'Pre',
-      component: Pre
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    },
-    {
-      path: '/layout',
-      name: 'Layout',
-      component: Layout,
-      children: [{
-        path: '/layout',
-        name: 'Centre',
-        component: Centre
-      },
-      {
-        path: '/myblog',
-        name: 'Myblog',
-        component: Myblog
-      },
-      {
-        path: '/editor',
-        name: 'Editor',
-        component: Editor
-      },
-      {
-        path: '/cnt',
-        name: 'Cnt',
-        component: Cnt
-      },
-      {
-        path: '/aidraw',
-        name: 'Aidraw',
-        component: Aidraw
-      },
-      {
-        path: '/piclibrary',
-        name: 'Piclibrary',
-        component: Piclibrary
-      }, {
-        path: '/test3_4',
-        name: 'Test3_4',
-        component: Test3_4
-      },
-      {
-        path: '/user',
-        name: 'User',
-        component: User
-      },
-      {
-        path: '/personcentre',
-        name: 'Personcentre',
-        component: Personcentre
-      },
-      {
-        path: '/setting',
-        name: 'Setting',
-        component: Setting
-      },
-      {
-        path: '/algoritms',
-        name: 'Algoritms',
-        component: Algoritms
-      },
-      {
-        path: '/aichat',
-        name: 'Aichat',
-        component: Aichat
-      },]
-    },
+            path: '/',
+            name: 'Pre',
+            component: Pre
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register
+        },
+        {
+            path: '/layout',
+            name: 'Layout',
+            component: Layout,
+            children: [{
+                path: '/layout',
+                name: 'Centre',
+                component: Centre
+            },
+                {
+                    path: '/myblog',
+                    name: 'Myblog',
+                    component: Myblog
+                },
+                {
+                    path: '/editor',
+                    name: 'Editor',
+                    component: Editor
+                },
+                {
+                    path: '/cnt',
+                    name: 'Cnt',
+                    component: Cnt
+                },
+                {
+                    path: '/aidraw',
+                    name: 'Aidraw',
+                    component: Aidraw
+                },
+                {
+                    path: '/piclibrary',
+                    name: 'Piclibrary',
+                    component: Piclibrary
+                }, {
+                    path: '/test3_4',
+                    name: 'Test3_4',
+                    component: Test3_4
+                },
+                {
+                    path: '/user',
+                    name: 'User',
+                    component: User
+                },
+                {
+                    path: '/personcentre',
+                    name: 'Personcentre',
+                    component: Personcentre
+                },
+                {
+                    path: '/setting',
+                    name: 'Setting',
+                    component: Setting
+                },
+                {
+                    path: '/algoritms',
+                    name: 'Algoritms',
+                    component: Algoritms
+                },
+                {
+                    path: '/aichat',
+                    name: 'Aichat',
+                    component: Aichat
+                },
+                {
+                    path: '/codeeditor',
+                    name: 'Codeeditor',
+                    component: Codeeditor
+                },]
+        },
 
-  ]
+    ]
 })
