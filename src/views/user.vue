@@ -9,7 +9,7 @@
         <el-button @click="openNewUserDialog">添加用户</el-button>
       </el-col>
     </el-row>
-    <el-table class="eltable" :data="users" stripe :header-cell-style="{ backgroundColor: 'aliceblue', color: '#666'}">
+    <el-table class="eltable" :data="users" stripe :header-cell-style="{ backgroundColor: 'aliceblue', color: '#666' }">
       <el-table-column prop="userId" label="用户ID"></el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
       <el-table-column prop="password" label="密码" :show-overflow-tooltip="true"></el-table-column>
@@ -20,6 +20,10 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+                   :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
+                   :total="totalUsers">
+    </el-pagination>
     <!-- 用户编辑对话框 -->
     <el-dialog title="编辑用户" :visible.sync="dialogVisible">
       <el-form :model="editFormData">
@@ -45,6 +49,9 @@ export default {
       searchQuery: '',
       dialogVisible: false,
       editFormData: {},
+      currentPage: 1,
+      pageSize: 10,
+      totalUsers: 0,
     };
   },
   methods: {
@@ -52,9 +59,12 @@ export default {
       this.$axios.get('/api/users', {
         params: {
           search: this.searchQuery,
+          page: this.currentPage,
+          size: this.pageSize,
         }
       }).then(response => {
         this.users = response.data.users;
+        this.totalUsers = response.data.total;
       }).catch(error => {
         console.error('Error fetching users:', error);
       });
@@ -64,7 +74,7 @@ export default {
       this.fetchUsers();
     },
     editUser(user) {
-      this.editFormData = { ...user };
+      this.editFormData = {...user};
       this.dialogVisible = true;
     },
     saveUser() {
@@ -102,6 +112,14 @@ export default {
     openNewUserDialog() {
       this.editFormData = {}; // 清空表单数据
       this.dialogVisible = true; // 显示对话框
+    },
+    handleSizeChange(size) {
+      this.pageSize = size;
+      this.fetchUsers();
+    },
+    handleCurrentChange(page) {
+      this.currentPage = page;
+      this.fetchUsers();
     }
   },
   mounted() {

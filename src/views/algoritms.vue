@@ -8,11 +8,11 @@
 
       <!-- Nowcoder -->
       <div class="box">
-        <img v-if="showNowCoderImage" :src="nowcoder.avatarUrl" height="90px" width="90px" alt="" />
+        <img v-if="showNowCoderImage" :src="nowcoder.avatarUrl" height="90px" width="90px" alt=""/>
 
         <div class="title">Nowcoder</div>
         <div class="input">
-          <input type="text" v-model="NowCodertempValue" @keyup.enter="showNowCoderContent" />
+          <input type="text" v-model="NowCodertempValue" @keyup.enter="showNowCoderContent"/>
           <button @click="showNowCoderContent">确认</button>
         </div>
         <div class="attribute">
@@ -21,8 +21,9 @@
             <span class="text">RatingRank: <strong style="color: black;">{{ nowcoder.ratingRank }}</strong> </span>
           </div>
           <div class="right">
-            <span class="text">CompetitionCount: <strong style="color: black;">{{ nowcoder.competitionCount
-                }}</strong></span>
+            <span class="text">CompetitionCount: <strong style="color: black;">{{
+                nowcoder.competitionCount
+              }}</strong></span>
             <span class="text">HasPassedProblem: <strong style="color: black;">{{ nowcoder.hasPassedProblem }}</strong>
             </span>
           </div>
@@ -32,10 +33,10 @@
 
       <!-- Leetcode -->
       <div class="box">
-        <img v-if="showLeetCodeImage" :src="leetcode.avatarUrl" height="90px" width="90px" alt="" />
+        <img v-if="showLeetCodeImage" :src="leetcode.avatarUrl" height="90px" width="90px" alt=""/>
         <div class="title">Leetcode</div>
         <div class="input">
-          <input type="text" v-model="LeetCodetempValue" @keyup.enter="showLeetCoderContent" />
+          <input type="text" v-model="LeetCodetempValue" @keyup.enter="showLeetCoderContent"/>
           <button @click="showLeetCoderContent">确认</button>
         </div>
         <div class="attribute">
@@ -53,10 +54,10 @@
 
       <!-- Luogu -->
       <div class="box">
-        <img v-if="showLuoguImage" :src="luogu.avatarUrl" height="90px" width="100px" alt="" />
+        <img v-if="showLuoguImage" :src="luogu.avatarUrl" height="90px" width="100px" alt=""/>
         <div class="title">Luogu</div>
         <div class="input">
-          <input type="text" v-model="LuoGutempValue" @keyup.enter="showLuoguContent" />
+          <input type="text" v-model="LuoGutempValue" @keyup.enter="showLuoguContent"/>
           <button @click="showLuoguContent">确认</button>
         </div>
         <div class="attribute">
@@ -72,9 +73,6 @@
       </div>
 
 
-
-
-
       <div class="box"></div>
       <div class="box"></div>
       <div class="box"></div>
@@ -88,34 +86,34 @@ export default {
   data() {
     return {
       nowcoder:
-      {
-        showNowCoderImage: false,
-        name: '牛客',
-        rating: '',
-        ratingRank: '',
-        competitionCount: '',
-        hasPassedProblem: '',
-        avatarBase64: '',  // 这里存放从后端获取的Base64编码的头像数据
-        avatarUrl: ''
-      },
+          {
+            showNowCoderImage: false,
+            name: '牛客',
+            rating: '',
+            ratingRank: '',
+            competitionCount: '',
+            hasPassedProblem: '',
+            avatarBase64: '',  // 这里存放从后端获取的Base64编码的头像数据
+            avatarUrl: ''
+          },
       leetcode:
-      {
-        showLeetCodeImage: false,
-        name: 'Leetcode',
-        total_solved: '',
-        easy_solved: '',
-        medium_solved: '',
-        hard_solved: ''
-      },
+          {
+            showLeetCodeImage: false,
+            name: 'Leetcode',
+            total_solved: '',
+            easy_solved: '',
+            medium_solved: '',
+            hard_solved: ''
+          },
       luogu:
-      {
-        showLuoguImage: false,
-        name: 'Luogu',
-        fans: '',
-        hasSumbitted: '',
-        hasPassed: '',
-        ranking: ''
-      }
+          {
+            showLuoguImage: false,
+            name: 'Luogu',
+            fans: '',
+            hasSumbitted: '',
+            hasPassed: '',
+            ranking: ''
+          }
 
     }
   },
@@ -123,54 +121,54 @@ export default {
     showNowCoderContent() {
       this.showNowCoderImage = true;
       this.$axios.get('/api/nowcoder/info/' + this.NowCodertempValue)
-        .then(response => {
-          this.nowcoder.rating = response.data.rating
-          this.nowcoder.ratingRank = response.data.ratingRank
-          this.nowcoder.competitionCount = response.data.competitionCount
-          this.nowcoder.hasPassedProblem = response.data.hasPassedProblem
-          this.nowcoder.avatarBase64 = response.data.avatar
-          this.nowcoder.avatarUrl = 'data:image/png;base64,' + this.nowcoder.avatarBase64
+          .then(response => {
+            this.nowcoder.rating = response.data.rating
+            this.nowcoder.ratingRank = response.data.ratingRank
+            this.nowcoder.competitionCount = response.data.competitionCount
+            this.nowcoder.hasPassedProblem = response.data.hasPassedProblem
+            this.nowcoder.avatarBase64 = response.data.avatar
+            this.nowcoder.avatarUrl = 'data:image/png;base64,' + this.nowcoder.avatarBase64
 
 
-        })
-        .catch(error => {
-          console.error(error);
-        });
+          })
+          .catch(error => {
+            console.error(error);
+          });
     },
     // --------------------------------------------
     showLeetCoderContent() {
       this.showLeetCodeImage = true;
       this.$axios.get('/api/leetcode/info/' + this.LeetCodetempValue)
-        .then(response => {
-          // this.nowcoder = response.data
-          this.leetcode.easy_solved = response.data.easy_solved
-          this.leetcode.medium_solved = response.data.medium_solved
-          this.leetcode.hard_solved = response.data.hard_solved
-          this.leetcode.total_solved = response.data.total_solved
-          this.leetcode.avatarBase64 = response.data.avatar
-          this.leetcode.avatarUrl = 'data:image/png;base64,' + this.leetcode.avatarBase64
+          .then(response => {
+            // this.nowcoder = response.data
+            this.leetcode.easy_solved = response.data.easy_solved
+            this.leetcode.medium_solved = response.data.medium_solved
+            this.leetcode.hard_solved = response.data.hard_solved
+            this.leetcode.total_solved = response.data.total_solved
+            this.leetcode.avatarBase64 = response.data.avatar
+            this.leetcode.avatarUrl = 'data:image/png;base64,' + this.leetcode.avatarBase64
 
-        })
-        .catch(error => {
-          console.error(error);
-        });
+          })
+          .catch(error => {
+            console.error(error);
+          });
     },
 
     showLuoguContent() {
       this.showLuoguImage = true;
       this.$axios.get('/api/luogu/info/' + this.LuoGutempValue)
-        .then(response => {
+          .then(response => {
 
-          this.luogu.fans = response.data.fans
-          this.luogu.hasSumbitted = response.data.hasSumbitted
-          this.luogu.hasPassed = response.data.hasAccepted
-          this.luogu.ranking = response.data.Ranking
+            this.luogu.fans = response.data.fans
+            this.luogu.hasSumbitted = response.data.hasSumbitted
+            this.luogu.hasPassed = response.data.hasAccepted
+            this.luogu.ranking = response.data.Ranking
 
 
-        })
-        .catch(error => {
-          console.error(error);
-        });
+          })
+          .catch(error => {
+            console.error(error);
+          });
     }
   }
 }
@@ -218,9 +216,9 @@ export default {
   align-items: center;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  width: calc((100%-500px) / 2);
-  min-width: calc((100% - 500px) /2);
-  max-width: calc((100% - 500px) /2);
+  width: calc((100% - 500px) / 2);
+  min-width: calc((100% - 500px) / 2);
+  max-width: calc((100% - 500px) / 2);
 
   &:nth-child(2n) {
     margin-left: 0px;
@@ -244,12 +242,14 @@ export default {
   display: flex;
   flex-direction: column;
   margin-left: 0;
+  background-color: rgb(245, 247, 249); /* 设置明确的背景颜色 */
 }
 
 .right {
   display: flex;
   flex-direction: column;
   margin-left: 100px;
+  background-color: rgb(245, 247, 249); /* 设置明确的背景颜色 */
 }
 
 .text {
