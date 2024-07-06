@@ -1,10 +1,15 @@
 <template>
   <div class="common-editor">
-    <textarea ref="textarea" v-model="value"></textarea>
+    <textarea ref="textarea" v-model="code"></textarea>
 
-    <el-button @click="goToRun()">运行</el-button>
+    <el-button @click="goToRun">运行</el-button>
+
+    <!-- 使用 el-card 美化结果框 -->
+    <el-card class="result-display">
+      <h3>执行结果:</h3>
+      <pre>{{ result }}</pre>
+    </el-card>
   </div>
-
 </template>
 
 <script>
@@ -44,6 +49,7 @@ export default {
       CommonEditor: false,
       code: '',
       coder: null,
+      result: '', // 用于存储执行结果
       mode: 'javascript',
       theme: 'default',
       modes: [
@@ -175,25 +181,61 @@ export default {
 
       // Send a POST request with the code content
       axios.post(endpoint, {
-        code: codeContent
+        code: codeContent,
+        type: 'java', // 加上代码类型
+        stdin: '' // 如果需要，可以添加标准输入内容
       })
           .then(response => {
             // Handle the response from the server
             console.log('Server response:', response.data);
+
+            // 假设后端返回的数据结构如下：
+            // {
+            //   "code": 0,
+            //   "data": {
+            //     "output": "hello ^!\r\n",
+            //     "code": 0,
+            //     "time": 0,
+            //     "message": ""
+            //   }
+            // }
+
+            // 处理响应数据
+            if (response.data.code === 0) {
+              const result = response.data.data;
+              console.log('Execution Output:', result.output);
+              console.log('Execution Time:', result.time);
+              console.log('Execution Message:', result.message);
+
+              // 在前端显示结果
+              this.displayResult(result);
+            } else {
+              console.error('Error in execution:', response.data.message);
+            }
           })
           .catch(error => {
             // Handle errors if the request fails
             console.error('Error sending code:', error);
           });
-    }
+    },
 
+    // 显示执行结果
+    // displayResult(result) {
+    //   // 假设你有一个HTML元素来显示结果
+    //   const resultElement = document.getElementById('result');
+    //   resultElement.innerText = `Output: ${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
+    // }
+    displayResult(result) {
+      // 将执行结果赋值给 result 属性，以便在模板中显示
+      this.result = `Output: ${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
+    }
   }
 }
 </script>
 <style lang="less">
 .common-editor {
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
 
   .CodeMirror {
     // color: #ccc;
@@ -215,5 +257,27 @@ export default {
 
 .CodeMirror-hints {
   z-index: 1000;
+}
+
+.result-display {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ebeef5;
+  background-color: #f9f9f9;
+}
+
+.result-display h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.result-display pre {
+  white-space: pre-wrap; /* 保持换行 */
+  word-wrap: break-word; /* 防止长单词溢出 */
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
 }
 </style>
