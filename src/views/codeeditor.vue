@@ -1,5 +1,16 @@
 <template>
+  <!--  写一个复选框，用于选择编程语言-->
+
+
   <div class="common-editor">
+    <el-select v-model="mode" placeholder="请选择语言" @change="changeMode">
+      <el-option
+          v-for="item in modes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+      ></el-option>
+    </el-select>
     <textarea ref="textarea" v-model="code"></textarea>
 
     <el-button @click="goToRun">运行</el-button>
@@ -8,8 +19,11 @@
     <el-card class="result-display">
       <h3>执行结果:</h3>
       <pre>{{ result }}</pre>
+
     </el-card>
+
   </div>
+
 </template>
 
 <script>
@@ -25,6 +39,7 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/markdown/markdown'
 import 'codemirror/mode/sql/sql'
 import 'codemirror/mode/php/php'
+import 'codemirror/mode/clike/clike'
 import 'codemirror/mode/python/python'
 import 'codemirror/mode/shell/shell'
 import 'codemirror/mode/powershell/powershell'
@@ -48,13 +63,16 @@ export default {
     return {
       CommonEditor: false,
       code: '',
+      type: '',// 代码类型  java python C++
       coder: null,
       result: '', // 用于存储执行结果
-      mode: 'javascript',
+      mode: 'java',
       theme: 'default',
       modes: [
         {value: 'javascript', label: 'Javascript'},
         {value: 'x-java', label: 'Java'},
+        {value: 'x-c++src', label: 'C++'},
+        {value: 'x-c', label: 'C'},
         {value: 'x-python', label: 'Python'},
         {value: 'x-sql', label: 'SQL'},
         {value: 'x-shell', label: 'Shell'},
@@ -167,6 +185,7 @@ export default {
     changeMode(val) {
       // 修改编辑器的语法配置
       this.coder.setOption('mode', `text/${val}`)
+
       // 获取修改后的语法
       const label = this.getLanguage(val).label.toLowerCase()
       // 允许父容器通过以下函数监听当前的语法值
@@ -182,7 +201,7 @@ export default {
       // Send a POST request with the code content
       axios.post(endpoint, {
         code: codeContent,
-        type: 'java', // 加上代码类型
+        type: this.mode, // 加上代码类型
         stdin: '' // 如果需要，可以添加标准输入内容
       })
           .then(response => {
@@ -219,15 +238,9 @@ export default {
           });
     },
 
-    // 显示执行结果
-    // displayResult(result) {
-    //   // 假设你有一个HTML元素来显示结果
-    //   const resultElement = document.getElementById('result');
-    //   resultElement.innerText = `Output: ${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
-    // }
     displayResult(result) {
       // 将执行结果赋值给 result 属性，以便在模板中显示
-      this.result = `Output: ${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
+      this.result = `Output: \n${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
     }
   }
 }
@@ -255,8 +268,18 @@ export default {
   }
 }
 
+//.CodeMirror-hints {
+//  z-index: 1000;
+//}
+
 .CodeMirror-hints {
   z-index: 1000;
+  background-color: #f5f5f5; /* 浅灰色背景 */
+  color: #333; /* 更深的文本颜色以提高可读性 */
+  font-size: 14px; /* 稍大的字体大小 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 微妙的阴影增加深度 */
+  border-radius: 4px; /* 圆角 */
+  padding: 5px 10px; /* 提示框内的间距 */
 }
 
 .result-display {
@@ -270,7 +293,7 @@ export default {
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 16px;
-  color: #333;
+  color: #e5baba;
 }
 
 .result-display pre {
@@ -279,5 +302,14 @@ export default {
   background-color: #f5f5f5;
   padding: 10px;
   border-radius: 4px;
+}
+/* CSS样式，用于美化代码输出 */
+.code-output {
+  font-family: 'Courier New', Courier, monospace; /* 使用等宽字体 */
+  font-size: 14px; /* 设置合适的字体大小 */
+  background-color: #f7f7f7; /* 设定背景色 */
+  padding: 10px; /* 添加内边距 */
+  border: 1px solid #ccc; /* 添加边框 */
+  white-space: pre-wrap; /* 保留换行符和空格 */
 }
 </style>
