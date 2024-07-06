@@ -78,7 +78,18 @@ export default {
         {value: 'x-shell', label: 'Shell'},
         {value: 'x-powershell', label: 'PowerShell'},
         {value: 'x-php', label: 'PHP'}
-      ]
+      ],
+      defaultCodes: {
+        'javascript': '// JavaScript 示例代码\nconsole.log("Hello, world!");',
+        'x-java': '// Java 示例代码\npublic class Code {\n  public static void main(String[] args) {\n    System.out.println("Hello, world!");\n  }\n}',
+        'x-c++src': '// C++ 示例代码\n#include <iostream>\nint main() {\n  std::cout << "Hello, world!" << std::endl;\n  return 0;\n}',
+        'x-c': '// C 示例代码\n#include <stdio.h>\nint main() {\n  printf("Hello, world!\\n");\n  return 0;\n}',
+        'x-python': '# Python 示例代码\nprint("Hello, world!")',
+        'x-sql': '-- SQL 示例代码\nSELECT \'Hello, world!\';',
+        'x-shell': '# Shell 示例代码\necho "Hello, world!"',
+        'x-powershell': '# PowerShell 示例代码\nWrite-Output "Hello, world!"',
+        'x-php': '<?php\n// PHP 示例代码\necho "Hello, world!";\n?>'
+      },
     }
   },
   watch: {
@@ -120,7 +131,8 @@ export default {
   },
   mounted() {
     // 初始化
-    this.initialize()
+    this.initialize();
+    this.setCodeContent(this.defaultCodes[this.mode]);
   },
   methods: {
     // 初始化
@@ -189,7 +201,9 @@ export default {
       // 获取修改后的语法
       const label = this.getLanguage(val).label.toLowerCase()
       // 允许父容器通过以下函数监听当前的语法值
-      this.$emit('language-change', label)
+      this.$emit('language-change', label);
+      // 更新编辑器内容为所选语言的默认代码模板
+      this.setCodeContent(this.defaultCodes[val]);
     },
     goToRun() {
       // Retrieve the current content from the editor
@@ -239,8 +253,11 @@ export default {
     },
 
     displayResult(result) {
-      // 将执行结果赋值给 result 属性，以便在模板中显示
-      this.result = `Output: \n${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
+      // 处理 result.output 中的 ANSI 转义序列
+      const cleanOutput = result.output.replace(/\u001b\[[0-9;]*m/g, '');
+
+      // 构建要显示的结果字符串
+      this.result = `Output: \n${cleanOutput}\nTime: ${result.time}\nMessage: ${result.message}`;
     }
   }
 }

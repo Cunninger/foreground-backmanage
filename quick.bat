@@ -4,7 +4,7 @@ REM 添加所有改动到暂存区
 git add .
 
 REM 提交改动
-git commit -m "add: 集成多种语言并实现编译"
+git commit -m "add: 增加默认代码模板"
 
 REM 推送改动到远程仓库
 git push origin master --force
