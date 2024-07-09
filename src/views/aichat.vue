@@ -9,7 +9,6 @@
   <script>
   
   </script>
-  
   <style scoped>
   .xxx {
     width: 100%;

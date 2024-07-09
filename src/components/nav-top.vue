@@ -1,19 +1,19 @@
 <template>
   <el-container>
 
-    <el-aside width="auto" class="header-logo tap">
+    <el-aside class="header-logo tap" width="auto">
 
-      <img class="logo" src="@/assets/imgs/logo.png" alt="Logo" />
+      <img alt="Logo" class="logo" src="@/assets/imgs/logo.png"/>
       <el-button @click="toggleSidebar">{{ isCollapsed ? '展开' : '收起' }}</el-button>
-      <el-button icon="el-icon-s-home" class="logo" @click="goPage('home')" style="margin-right: 20px;"></el-button>
- 
-    <el-tag class="date" style="margin-left: 20px;">{{ currentDate }}</el-tag>
+      <el-button class="logo" icon="el-icon-s-home" style="margin-right: 20px;" @click="goPage('home')"></el-button>
+
+      <el-tag class="date" style="margin-left: 20px;">{{ currentDate }}</el-tag>
     </el-aside>
 
-    <el-aside width="auto" class="header-logo tap">
+    <el-aside class="header-logo tap" width="auto">
       <el-dropdown ref="dropdown">
 
-        <el-avatar icon="el-icon-user-solid" class="headerLogo" @click.native="goProfile()"></el-avatar>
+        <el-avatar class="headerLogo" icon="el-icon-user-solid" @click.native="goProfile()"></el-avatar>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item index="1" @click.native="goPage('personcentre')">个人中心</el-dropdown-item>
           <el-dropdown-item index="2" @click.native="goPage('setting')">设置</el-dropdown-item>

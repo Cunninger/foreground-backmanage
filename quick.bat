@@ -4,8 +4,9 @@ REM 添加所有改动到暂存区
 git add .
 
 REM 提交改动
-git commit -m "add: 增加默认代码模板"
+git commit -m "add: mark 1"
 
 REM 推送改动到远程仓库
 git push origin master --force
+
 

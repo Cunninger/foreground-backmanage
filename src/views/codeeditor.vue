@@ -80,15 +80,15 @@ export default {
         {value: 'x-php', label: 'PHP'}
       ],
       defaultCodes: {
-        'javascript': '// JavaScript 示例代码\nconsole.log("Hello, world!");',
-        'x-java': '// Java 示例代码\npublic class Code {\n  public static void main(String[] args) {\n    System.out.println("Hello, world!");\n  }\n}',
-        'x-c++src': '// C++ 示例代码\n#include <iostream>\nint main() {\n  std::cout << "Hello, world!" << std::endl;\n  return 0;\n}',
-        'x-c': '// C 示例代码\n#include <stdio.h>\nint main() {\n  printf("Hello, world!\\n");\n  return 0;\n}',
-        'x-python': '# Python 示例代码\nprint("Hello, world!")',
-        'x-sql': '-- SQL 示例代码\nSELECT \'Hello, world!\';',
+        'javascript': '// JavaScript 示例代码\nconsole.log("Hello, world!javascript ");',
+        'x-java': '// Java 示例代码\n// 注意类名默认为Code\npublic class Code {\n  public static void main(String[] args) {\n    System.out.println("Hello, world! java");\n  }\n}',
+        'x-c++src': '// C++ 示例代码\n#include <iostream>\nint main() {\n  std::cout << "Hello, world! C++" << std::endl;\n  return 0;\n}',
+        'x-c': '// C 示例代码\n#include<stdio.h>\nint main() {\n  printf("Hello, world! C");\n  return 0;\n}',
+        'x-python': '# Python 示例代码\nprint("Hello, world! python")',
+        'x-sql': '-- SQL 示例代码\nSELECT \'Hello, world! sql\';',
         'x-shell': '# Shell 示例代码\necho "Hello, world!"',
         'x-powershell': '# PowerShell 示例代码\nWrite-Output "Hello, world!"',
-        'x-php': '<?php\n// PHP 示例代码\necho "Hello, world!";\n?>'
+        'x-php': '<?php\n// PHP 示例代码\necho "Hello, world! php";\n?>'
       },
     }
   },
@@ -206,21 +206,20 @@ export default {
       this.setCodeContent(this.defaultCodes[val]);
     },
     goToRun() {
-      // Retrieve the current content from the editor
+      // 从编辑器中检索当前内容
       const codeContent = this.coder.getValue();
 
-      // URL of the backend endpoint
+
       const endpoint = '/api/codeeditor';
 
-      // Send a POST request with the code content
       axios.post(endpoint, {
         code: codeContent,
         type: this.mode, // 加上代码类型
         stdin: '' // 如果需要，可以添加标准输入内容
       })
           .then(response => {
-            // Handle the response from the server
             console.log('Server response:', response.data);
+            console.log('qqqqq response:', response.data.data);
 
             // 假设后端返回的数据结构如下：
             // {
@@ -232,9 +231,10 @@ export default {
             //     "message": ""
             //   }
             // }
-
             // 处理响应数据
             if (response.data.code === 0) {
+
+
               const result = response.data.data;
               console.log('Execution Output:', result.output);
               console.log('Execution Time:', result.time);
@@ -253,11 +253,10 @@ export default {
     },
 
     displayResult(result) {
-      // 处理 result.output 中的 ANSI 转义序列
-      const cleanOutput = result.output.replace(/\u001b\[[0-9;]*m/g, '');
+
 
       // 构建要显示的结果字符串
-      this.result = `Output: \n${cleanOutput}\nTime: ${result.time}\nMessage: ${result.message}`;
+      this.result = `Output: \n${result.output}\nTime: ${result.time}\nMessage: ${result.message}`;
     }
   }
 }
@@ -320,6 +319,7 @@ export default {
   padding: 10px;
   border-radius: 4px;
 }
+
 /* CSS样式，用于美化代码输出 */
 .code-output {
   font-family: 'Courier New', Courier, monospace; /* 使用等宽字体 */
