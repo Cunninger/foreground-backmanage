@@ -1,4 +1,3 @@
-
 <template>
   <el-aside :width="isCollapsed ? '53.5px' : '242px'">
     <el-row class="tac">
@@ -8,22 +7,22 @@
           <el-menu-item index="1" @click="goPage('home')">
             <span v-if="!isCollapsed" slot="title">后台中心</span>
             <!-- <i class="el-icon-menu" :style="{'display' : isCollapsed ? 'inline-block' : 'none'}"></i> -->
-            <i class="el-icon-menu" :style='inline-block'></i>
+            <i class="el-icon-menu" :style='inline - block'></i>
 
           </el-menu-item>
 
           <el-menu-item index="2" @click="goPage('myblog')">
             <span v-if="!isCollapsed" slot="title">我的博客</span>
-            <i class="el-icon-s-order" :style='inline-block'></i>
+            <i class="el-icon-s-order" :style='inline - block'></i>
           </el-menu-item>
 
           <el-submenu index="3">
             <template slot="title">
-   
-              <i class="el-icon-location" :style='inline-block'></i>
-              <span v-if="!isCollapsed">测试3</span>  
+
+              <i class="el-icon-location" :style='inline - block'></i>
+              <span v-if="!isCollapsed">测试3</span>
             </template>
-            <el-menu-item-group >
+            <el-menu-item-group>
               <el-menu-item index="3-1" @click="goPage('cnt')">
                 chatnextweb</el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
@@ -31,7 +30,7 @@
             <el-menu-item-group>
               <el-menu-item index="3-2" @click="goPage('aidraw')">AI绘画</el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
-          
+
 
             <el-menu-item-group>
               <el-menu-item index="3-3" @click="goPage('piclibrary')">AI图库</el-menu-item> <!-- 添加这行 -->
@@ -43,34 +42,34 @@
 
           </el-submenu>
 
-  
+
 
 
 
           <el-menu-item index="4" @click="goPage('user')">
             <span v-if="!isCollapsed" slot="title">用户管理</span>
-            <i class="el-icon-user" :style='inline-block'></i>
+            <i class="el-icon-user" :style='inline - block'></i>
           </el-menu-item>
 
           <el-menu-item index="5" @click="goPage('algoritms')">
             <span v-if="!isCollapsed" slot="title">算法查询</span>
-            <i class="el-icon-trophy" :style='inline-block'></i>
+            <i class="el-icon-trophy" :style='inline - block'></i>
           </el-menu-item>
 
           <el-menu-item index="6" @click="goPage('aichat')">
             <span v-if="!isCollapsed" slot="title">AI问答</span>
-            <i class="el-icon-chat-dot-square" :style='inline-block'></i>
+            <i class="el-icon-chat-dot-square" :style='inline - block'></i>
           </el-menu-item>
 
 
           <el-menu-item index="7" @click="goPage('editor')">
             <span v-if="!isCollapsed" slot="title">文本编辑</span>
-            <i class="el-icon-edit" :style='inline-block'></i>
+            <i class="el-icon-edit" :style='inline - block'></i>
           </el-menu-item>
 
           <el-menu-item index="8" @click="goPage('codeeditor')">
             <span v-if="!isCollapsed" slot="title">代码编辑</span>
-            <i class="el-icon-edit" :style='inline-block'></i>
+            <i class="el-icon-edit" :style='inline - block'></i>
           </el-menu-item>
 
 
@@ -158,4 +157,3 @@ export default {
   font-weight: bold;
 }
 </style>
-

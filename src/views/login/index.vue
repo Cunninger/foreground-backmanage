@@ -55,9 +55,9 @@ export default {
                             username: this.form.username,
                             password: this.form.password
                         };
-                        sessionStorage.setItem("user", JSON.stringify(userInfo));
-                        this.user = userInfo;
-                        
+                        // 使用 Vuex 存储用户信息
+                        this.$store.dispatch('loginUser', userInfo);
+
                         this.$message({
                             type: 'success',
                             message: '登录成功'
