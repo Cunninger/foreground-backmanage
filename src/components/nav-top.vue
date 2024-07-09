@@ -11,7 +11,7 @@
     </el-aside>
 
     <el-aside class="header-logo tap" width="auto">
-      <div style="margin-right: 10px;"> <strong>{{ user.username }}</strong></div>
+      <div style="margin-right: 10px;"> <strong>{{ user?.username }}</strong></div>
       <el-dropdown ref="dropdown">
 
         <el-avatar class="headerLogo" icon="el-icon-user-solid" @click.native="goProfile()"></el-avatar>
