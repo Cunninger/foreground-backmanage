@@ -56,12 +56,21 @@ export default {
                         // console.log(res.data.data)
                         // 使用 Vuex 存储用户信息
                         this.$store.dispatch('loginUser', userInfo);
+                        if (userInfo.status === 0) {
+                            this.$router.push('/noauth');
+                            this.$message({
+                                type: 'error',
+                                message: '账号被禁用,请联系管理员！'
+                            });
+                        }
+                        else {
+                            this.$router.push('/layout');
+                            this.$message({
+                                type: 'success',
+                                message: '登录成功'
+                            });
+                        }
 
-                        this.$message({
-                            type: 'success',
-                            message: '登录成功'
-                        });
-                        this.$router.push('/layout');
                     } else {
                         this.$message({
                             type: 'error',

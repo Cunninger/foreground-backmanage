@@ -27,7 +27,7 @@ import Aboutme from '@/frontend/views/aboutme/index'
 import FLayout from '@/frontend/views/Layout'
 import Singlechat from '@/frontend/views/header/singlechat.vue'
 import Codeeditor from "@/views/codeeditor.vue";
-
+import Noauth from '@/views/exception/noauth.vue'
 Vue.use(Router)
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -71,6 +71,11 @@ export default new Router({
             path: '/',
             name: 'Pre',
             component: Pre
+        },
+        {
+            path: '/noauth',
+            name: 'Noauth',
+            component: Noauth
         },
         {
             path: '/login',
