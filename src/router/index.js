@@ -91,65 +91,68 @@ export default new Router({
                 name: 'Centre',
                 component: Centre
             },
-                {
-                    path: '/myblog',
-                    name: 'Myblog',
-                    component: Myblog
+            {
+                path: '/myblog',
+                name: 'Myblog',
+                component: Myblog
+            },
+            {
+                path: '/editor',
+                name: 'Editor',
+                component: Editor
+            },
+            {
+                path: '/cnt',
+                name: 'Cnt',
+                component: Cnt
+            },
+            {
+                path: '/aidraw',
+                name: 'Aidraw',
+                component: Aidraw
+            },
+            {
+                path: '/piclibrary',
+                name: 'Piclibrary',
+                component: Piclibrary
+            }, {
+                path: '/test3_4',
+                name: 'Test3_4',
+                component: Test3_4
+            },
+            {
+                path: '/user',
+                name: 'User',
+                component: User,
+                meta: {
+                    access: "canAdmin",
                 },
-                {
-                    path: '/editor',
-                    name: 'Editor',
-                    component: Editor
-                },
-                {
-                    path: '/cnt',
-                    name: 'Cnt',
-                    component: Cnt
-                },
-                {
-                    path: '/aidraw',
-                    name: 'Aidraw',
-                    component: Aidraw
-                },
-                {
-                    path: '/piclibrary',
-                    name: 'Piclibrary',
-                    component: Piclibrary
-                }, {
-                    path: '/test3_4',
-                    name: 'Test3_4',
-                    component: Test3_4
-                },
-                {
-                    path: '/user',
-                    name: 'User',
-                    component: User
-                },
-                {
-                    path: '/personcentre',
-                    name: 'Personcentre',
-                    component: Personcentre
-                },
-                {
-                    path: '/setting',
-                    name: 'Setting',
-                    component: Setting
-                },
-                {
-                    path: '/algoritms',
-                    name: 'Algoritms',
-                    component: Algoritms
-                },
-                {
-                    path: '/aichat',
-                    name: 'Aichat',
-                    component: Aichat
-                },
-                {
-                    path: '/codeeditor',
-                    name: 'Codeeditor',
-                    component: Codeeditor
-                },]
+            },
+            {
+                path: '/personcentre',
+                name: 'Personcentre',
+                component: Personcentre
+            },
+            {
+                path: '/setting',
+                name: 'Setting',
+                component: Setting
+            },
+            {
+                path: '/algoritms',
+                name: 'Algoritms',
+                component: Algoritms
+            },
+            {
+                path: '/aichat',
+                name: 'Aichat',
+                component: Aichat
+            },
+            {
+                path: '/codeeditor',
+                name: 'Codeeditor',
+                component: Codeeditor
+            },]
         },
 
     ]

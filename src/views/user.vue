@@ -13,6 +13,7 @@
       <el-table-column prop="userId" label="用户ID"></el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
       <el-table-column prop="password" label="密码" :show-overflow-tooltip="true"></el-table-column>
+      <el-table-column prop="role" label="权限" :show-overflow-tooltip="true"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="editUser(scope.row)">编辑</el-button>

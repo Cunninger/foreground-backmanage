@@ -51,10 +51,9 @@ export default {
             })
                 .then((res) => {
                     if (res.data.code === 200) {
-                        const userInfo = {
-                            username: this.form.username,
-                            password: this.form.password
-                        };
+                        // alert(res.data.user.role)
+                        const userInfo = res.data.user;
+                        // console.log(res.data.data)
                         // 使用 Vuex 存储用户信息
                         this.$store.dispatch('loginUser', userInfo);
 

@@ -46,10 +46,15 @@
 
 
 
-          <el-menu-item index="4" @click="goPage('user')">
+          <!-- <el-menu-item index="4" @click="goPage('user')">
+            <span v-if="!isCollapsed" slot="title">用户管理</span>
+            <i class="el-icon-user" :style='inline - block'></i>
+          </el-menu-item> -->
+          <el-menu-item index="4" @click="goPage('user')" v-if="isAdmin">
             <span v-if="!isCollapsed" slot="title">用户管理</span>
             <i class="el-icon-user" :style='inline - block'></i>
           </el-menu-item>
+
 
           <el-menu-item index="5" @click="goPage('algoritms')">
             <span v-if="!isCollapsed" slot="title">算法查询</span>
@@ -81,9 +86,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: 'Sidebar',
   props: ['isCollapsed'],
+  computed: {
+    ...mapState([
+      'user' // 直接映射 this.user 到 store.state.user
+    ]),
+    isAdmin() {
+      return this.user.role === 'admin';
+    }
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -111,7 +125,8 @@ export default {
       if (path) {
         this.$router.push(path).catch(error => error);
       }
-    }
+    },
+
   }
 };
 </script>

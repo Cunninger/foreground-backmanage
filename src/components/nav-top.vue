@@ -20,6 +20,7 @@
           <el-dropdown-item index="2" @click.native="goPage('setting')">设置</el-dropdown-item>
           <el-dropdown-item index="3" @click.native="signout()">退出</el-dropdown-item>
         </el-dropdown-menu>
+        
       </el-dropdown>
     </el-aside>
   </el-container>
