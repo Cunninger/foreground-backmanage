@@ -2,29 +2,30 @@
   <el-aside :width="isCollapsed ? '53.5px' : '242px'">
     <el-row class="tac">
       <el-col>
-        <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+        <el-menu class="el-menu-vertical-demo" default-active="1" @close="handleClose" @open="handleOpen">
 
           <el-menu-item index="1" @click="goPage('home')">
             <span v-if="!isCollapsed" slot="title">后台中心</span>
             <!-- <i class="el-icon-menu" :style="{'display' : isCollapsed ? 'inline-block' : 'none'}"></i> -->
-            <i class="el-icon-menu" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-menu"></i>
 
           </el-menu-item>
 
           <el-menu-item index="2" @click="goPage('myblog')">
             <span v-if="!isCollapsed" slot="title">我的博客</span>
-            <i class="el-icon-s-order" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-s-order"></i>
           </el-menu-item>
 
-          <el-submenu index="3">
+          <el-submenu index="3">;
             <template slot="title">
 
-              <i class="el-icon-location" :style='inline - block'></i>
+              <i :style='inline - block' class="el-icon-location"></i>
               <span v-if="!isCollapsed">测试3</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index="3-1" @click="goPage('cnt')">
-                chatnextweb</el-menu-item> <!-- 添加这行 -->
+                chatnextweb
+              </el-menu-item> <!-- 添加这行 -->
             </el-menu-item-group>
 
             <el-menu-item-group>
@@ -43,40 +44,41 @@
           </el-submenu>
 
 
-
-
-
           <!-- <el-menu-item index="4" @click="goPage('user')">
             <span v-if="!isCollapsed" slot="title">用户管理</span>
             <i class="el-icon-user" :style='inline - block'></i>
           </el-menu-item> -->
-          <el-menu-item index="4" @click="goPage('user')" v-if="isAdmin">
+          <el-menu-item v-if="isAdmin" index="4" @click="goPage('user')">
             <span v-if="!isCollapsed" slot="title">用户管理</span>
-            <i class="el-icon-user" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-user"></i>
           </el-menu-item>
 
 
           <el-menu-item index="5" @click="goPage('algoritms')">
             <span v-if="!isCollapsed" slot="title">算法查询</span>
-            <i class="el-icon-trophy" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-trophy"></i>
           </el-menu-item>
 
           <el-menu-item index="6" @click="goPage('aichat')">
             <span v-if="!isCollapsed" slot="title">AI问答</span>
-            <i class="el-icon-chat-dot-square" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-chat-dot-square"></i>
           </el-menu-item>
 
 
           <el-menu-item index="7" @click="goPage('editor')">
             <span v-if="!isCollapsed" slot="title">文本编辑</span>
-            <i class="el-icon-edit" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-edit"></i>
           </el-menu-item>
 
           <el-menu-item index="8" @click="goPage('codeeditor')">
             <span v-if="!isCollapsed" slot="title">代码编辑</span>
-            <i class="el-icon-edit" :style='inline - block'></i>
+            <i :style='inline - block' class="el-icon-edit"></i>
           </el-menu-item>
 
+          <el-menu-item v-if="isAdmin" index="9" @click="goPage('privilegeallocation')">
+            <span v-if="!isCollapsed" slot="title">权限分配</span>
+            <i :style='inline - block' class="el-icon-edit"></i>
+          </el-menu-item>
 
 
         </el-menu>
@@ -86,7 +88,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
+
 export default {
   name: 'Sidebar',
   props: ['isCollapsed'],
@@ -95,7 +98,7 @@ export default {
       'user' // 直接映射 this.user 到 store.state.user
     ]),
     isAdmin() {
-      return this.user.role === 'admin';
+      return this.user.sysRole.name === 'admin';
     }
   },
   methods: {
@@ -118,7 +121,9 @@ export default {
         editor: '/editor',
         algoritms: '/algoritms',
         aichat: '/aichat',
-        codeeditor: '/codeeditor'
+        codeeditor: '/codeeditor',
+        privilegeallocation: '/privilegeallocation',
+
       };
 
       const path = routes[link];

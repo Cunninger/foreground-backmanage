@@ -6,6 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
+    // User(sysRole=SysRole(name=admin, description=管理员, available=true),
+    // username=金陵易和, password=123, lastLoginTime=null, status=true)
   },
   mutations: {
     setUser(state, user) {

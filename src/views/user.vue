@@ -9,15 +9,15 @@
         <el-button @click="openNewUserDialog">添加用户</el-button>
         <el-button @click="exportUsers">导出用户</el-button>
         <el-button @click="triggerFileInput">导入用户</el-button>
-        <input type="file" ref="fileInput" style="display: none;" @change="importUsers" accept=".csv">
+        <input ref="fileInput" accept=".csv" style="display: none;" type="file" @change="importUsers">
       </el-col>
     </el-row>
-    <el-table class="eltable" :data="users" stripe :header-cell-style="{ backgroundColor: 'aliceblue', color: '#666' }">
-      <el-table-column prop="userId" label="用户ID"></el-table-column>
-      <el-table-column prop="username" label="用户名"></el-table-column>
-      <el-table-column prop="password" label="密码" :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="role" label="权限" :show-overflow-tooltip="true"></el-table-column>
-      <el-table-column prop="status" label="状态" :show-overflow-tooltip="true"></el-table-column>
+    <el-table :data="users" :header-cell-style="{ backgroundColor: 'aliceblue', color: '#666' }" class="eltable" stripe>
+      <!--      <el-table-column prop="userId" label="用户ID"></el-table-column>-->
+      <el-table-column label="用户名" prop="username"></el-table-column>
+      <el-table-column :show-overflow-tooltip="true" label="密码" prop="password"></el-table-column>
+      <el-table-column :show-overflow-tooltip="true" label="权限" prop="sysRole.name"></el-table-column>
+      <el-table-column :show-overflow-tooltip="true" label="状态" prop="status"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="editUser(scope.row)">编辑</el-button>
@@ -25,12 +25,12 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
-      :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
-      :total="totalUsers">
+    <el-pagination :current-page="currentPage" :page-size="pageSize" :page-sizes="[10, 20, 30, 40]"
+                   :total="totalUsers" layout="total, sizes, prev, pager, next, jumper" @size-change="handleSizeChange"
+                   @current-change="handleCurrentChange">
     </el-pagination>
     <!-- 用户编辑对话框 -->
-    <el-dialog title="编辑用户" :visible.sync="dialogVisible">
+    <el-dialog :visible.sync="dialogVisible" title="编辑用户">
       <el-form :model="editFormData">
         <el-form-item label="用户名">
           <el-input v-model="editFormData.username"></el-input>
@@ -55,7 +55,6 @@
         </el-form-item>
 
 
-
         <el-form-item>
           <el-button type="primary" @click="saveUser">保存</el-button>
         </el-form-item>
@@ -66,6 +65,7 @@
 
 <script>
 import Papa from 'papaparse';
+
 export default {
   data() {
     return {
@@ -98,7 +98,7 @@ export default {
       this.fetchUsers();
     },
     editUser(user) {
-      this.editFormData = { ...user };
+      this.editFormData = {...user};
       this.dialogVisible = true;
     },
     saveUser() {
@@ -145,6 +145,7 @@ export default {
       this.currentPage = page;
       this.fetchUsers();
     },
+
     exportUsers() {
       this.$axios.get('/api/users', {
         params: {
@@ -158,11 +159,11 @@ export default {
         const csv = Papa.unparse(users, {
           header: true,
           // columns: ['userId', 'username', 'password', 'role', 'status']
-          columns: ['username', 'password', 'role', 'status']
+          columns: ['username', 'password', 'sysRole.name', 'status']
 
         });
 
-        const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+        const blob = new Blob(["\uFEFF" + csv], {type: 'text/csv;charset=utf-8;'});
         const link = document.createElement("a");
         if (link.download !== undefined) {
           const url = URL.createObjectURL(blob);
@@ -216,7 +217,7 @@ export default {
         const line = lines[i].trim();
         if (line) {
           const [username, password, role, status] = line.split(',');
-          users.push({ username, password, role, status });
+          users.push({username, password, role, status});
         }
       }
       return users;
@@ -224,14 +225,14 @@ export default {
 
     uploadUsers(users) {
       this.$axios.post('/api/users/import', users)
-        .then(() => {
-          this.$message.success(`成功导入 ${users.length - 1} 个用户`);
-          this.fetchUsers();  // 刷新用户列表
-        })
-        .catch(error => {
-          console.error('Error importing users:', error);
-          this.$message.error('用户导入失败: ' + (error.response?.data?.message || '未知错误'));
-        });
+          .then(() => {
+            this.$message.success(`成功导入 ${users.length - 1} 个用户`);
+            this.fetchUsers();  // 刷新用户列表
+          })
+          .catch(error => {
+            console.error('Error importing users:', error);
+            this.$message.error('用户导入失败: ' + (error.response?.data?.message || '未知错误'));
+          });
     },
     // --- 导入方法结束 ---
   },

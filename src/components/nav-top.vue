@@ -3,7 +3,7 @@
 
     <el-aside class="header-logo tap" width="auto">
 
-      <img alt="Logo" class="logo" src="@/assets/imgs/logo.png" />
+      <img alt="Logo" class="logo" src="@/assets/imgs/logo.png"/>
       <el-button @click="toggleSidebar">{{ isCollapsed ? '展开' : '收起' }}</el-button>
       <el-button class="logo" icon="el-icon-s-home" style="margin-right: 20px;" @click="goPage('home')"></el-button>
 
@@ -11,7 +11,7 @@
     </el-aside>
 
     <el-aside class="header-logo tap" width="auto">
-      <div style="margin-right: 10px;"> <strong>{{ user?.username }}</strong></div>
+      <div style="margin-right: 10px;"><strong>{{ user?.username }}</strong></div>
       <el-dropdown ref="dropdown">
 
         <el-avatar class="headerLogo" icon="el-icon-user-solid" @click.native="goProfile()"></el-avatar>
@@ -20,14 +20,15 @@
           <el-dropdown-item index="2" @click.native="goPage('setting')">设置</el-dropdown-item>
           <el-dropdown-item index="3" @click.native="signout()">退出</el-dropdown-item>
         </el-dropdown-menu>
-        
+
       </el-dropdown>
     </el-aside>
   </el-container>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
+
 export default {
   name: 'nav-top',
   props: {
