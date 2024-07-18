@@ -13,11 +13,10 @@
       </el-col>
     </el-row>
     <el-table :data="users" :header-cell-style="{ backgroundColor: 'aliceblue', color: '#666' }" class="eltable" stripe>
-      <!--      <el-table-column prop="userId" label="用户ID"></el-table-column>-->
       <el-table-column label="用户名" prop="username"></el-table-column>
       <el-table-column :show-overflow-tooltip="true" label="密码" prop="password"></el-table-column>
       <el-table-column :show-overflow-tooltip="true" label="权限" prop="sysRole.name"></el-table-column>
-      <el-table-column :show-overflow-tooltip="true" label="状态" prop="status"></el-table-column>
+      <el-table-column :formatter="formatStatus" label="状态" prop="status"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="editUser(scope.row)">编辑</el-button>
@@ -53,8 +52,6 @@
             <el-option label="禁用" value="0"></el-option>
           </el-select>
         </el-form-item>
-
-
         <el-form-item>
           <el-button type="primary" @click="saveUser">保存</el-button>
         </el-form-item>
@@ -79,6 +76,9 @@ export default {
     };
   },
   methods: {
+    formatStatus(row, column, value, index) {
+      return value === 1 ? "启用" : "禁用";
+    },
     fetchUsers() {
       this.$axios.get('/api/users', {
         params: {

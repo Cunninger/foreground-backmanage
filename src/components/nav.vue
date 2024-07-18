@@ -81,6 +81,12 @@
           </el-menu-item>
 
 
+          <el-menu-item  index="9" @click="goPage('mypan')">
+            <span v-if="!isCollapsed" slot="title">我的网盘</span>
+            <i :style='inline - block' class="el-icon-edit"></i>
+          </el-menu-item>
+
+
         </el-menu>
       </el-col>
     </el-row>
@@ -89,6 +95,7 @@
 
 <script>
 import {mapState} from 'vuex';
+import ACCESS from "@/access/accessEnum";
 
 export default {
   name: 'Sidebar',
@@ -98,7 +105,7 @@ export default {
       'user' // 直接映射 this.user 到 store.state.user
     ]),
     isAdmin() {
-      return this.user.sysRole.name === 'admin';
+      return this.user.sysRole.name === ACCESS.ADMIN;
     }
   },
   methods: {
@@ -123,6 +130,7 @@ export default {
         aichat: '/aichat',
         codeeditor: '/codeeditor',
         privilegeallocation: '/privilegeallocation',
+        mypan:"/mypan"
 
       };
 
