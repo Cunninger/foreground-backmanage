@@ -37,15 +37,10 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      currentDate: ''
-    };
-  },
   computed: {
     ...mapState([
       'user' // 直接映射 this.user 到 store.state.user
-    ])
+    ]),
   },
   mounted() {
     this.updateTime();

@@ -8,11 +8,11 @@
 
       <!-- Nowcoder -->
       <div class="box">
-        <img v-if="showNowCoderImage" :src="nowcoder.avatarUrl" height="90px" width="90px" alt=""/>
+        <img v-if="showNowCoderImage" :src="nowcoder.avatarUrl" alt="" height="90px" width="90px"/>
 
         <div class="title">Nowcoder</div>
         <div class="input">
-          <input type="text" v-model="NowCodertempValue" @keyup.enter="showNowCoderContent"/>
+          <input v-model="NowCodertempValue" type="text" @keyup.enter="showNowCoderContent"/>
           <button @click="showNowCoderContent">确认</button>
         </div>
         <div class="attribute">
@@ -33,10 +33,10 @@
 
       <!-- Leetcode -->
       <div class="box">
-        <img v-if="showLeetCodeImage" :src="leetcode.avatarUrl" height="90px" width="90px" alt=""/>
+        <img v-if="showLeetCodeImage" :src="leetcode.avatarUrl" alt="" height="90px" width="90px"/>
         <div class="title">Leetcode</div>
         <div class="input">
-          <input type="text" v-model="LeetCodetempValue" @keyup.enter="showLeetCoderContent"/>
+          <input v-model="LeetCodetempValue" type="text" @keyup.enter="showLeetCoderContent"/>
           <button @click="showLeetCoderContent">确认</button>
         </div>
         <div class="attribute">
@@ -54,10 +54,10 @@
 
       <!-- Luogu -->
       <div class="box">
-        <img v-if="showLuoguImage" :src="luogu.avatarUrl" height="90px" width="100px" alt=""/>
+        <img v-if="showLuoguImage" :src="luogu.avatarUrl" alt="" height="90px" width="100px"/>
         <div class="title">Luogu</div>
         <div class="input">
-          <input type="text" v-model="LuoGutempValue" @keyup.enter="showLuoguContent"/>
+          <input v-model="LuoGutempValue" type="text" @keyup.enter="showLuoguContent"/>
           <button @click="showLuoguContent">确认</button>
         </div>
         <div class="attribute">

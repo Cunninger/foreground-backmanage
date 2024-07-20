@@ -1,84 +1,188 @@
 <template>
-  <el-card class="xxx">
-    <div>
-    <el-row :gutter="15">
-      <el-form ref="elForm" :model="formData" :rules="rules" size="medium" label-width="100px">
-        <el-col :span="11">
-          <el-divider></el-divider>
-          <el-form-item label="上传" prop="field105" required>
-            <el-upload
-              ref="field105"
-              :file-list="field105fileList"
-              :action="field105Action"
-              :before-upload="field105BeforeUpload"
-              @on-success="handleSuccess"
-            >
-              <el-button size="small" type="primary" icon="el-icon-upload">点击上传</el-button>
-            </el-upload>
-          </el-form-item>
-        </el-col>
-        <el-col :span="24">
-          <el-form-item size="large">
-            <el-button type="primary" @click="submitForm">提交</el-button>
-            <el-button @click="resetForm">重置</el-button>
-          </el-form-item>
-        </el-col>
-      </el-form>
-    </el-row>
+  <div class="personalinfo">
+    <div class="card-container">
+      <el-card class="personalcard">
+        <div slot="header" class="clearfix">
+          <span>个人信息</span>
+        </div>
+        <div>
+          <el-upload
+              :before-upload="beforeAvatarUpload"
+              :on-success="handleAvatarSuccess"
+              :show-file-list="false"
+              action="/api/upload-avatar"
+              class="avatar-uploader">
+            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </div>
+        <div>
+          <div slot="content" class="clearfix user-info">
+            <span class="el-icon-user">用户名称</span>
+            <span>{{ user?.username }}</span>
+          </div>
+          <div class="divider"></div> <!-- 分隔线 -->
+          <div slot="content" class="clearfix user-info">
+            <span class="el-icon-aim">用户职位</span>
+            <span> {{ user.sysRole.description }}</span>
+          </div>
+          <div class="divider"></div> <!-- 分隔线 -->
+
+          <div slot="content" class="clearfix user-info">
+            <span class="el-icon-time">创建时间</span>
+            <span> {{ user.createTime.slice(0, 10) }}</span></div>
+          <div class="divider"></div> <!-- 分隔线 -->
+        </div>
+      </el-card>
+
+      <el-card class="basecard">
+        <div slot="header" class="clearfix">
+          <span>基本资料</span>
+        </div>
+        <el-tabs v-model="activeTab">
+          <el-tab-pane label="基本资料" name="userinfo">
+            <div>
+              <el-row :gutter="15">
+                <el-form ref="" :model="formData" :rules="rules" label-width="100px" size="medium">
+                  <el-col :span="24">
+                    <el-form-item label="用户名称" prop="mobile">
+                      <el-input v-model="formData.mobile" :maxlength="11" :style="{width: '100%'}" clearable
+                                placeholder="" prefix-icon='el-icon-mobile' show-word-limit>
+
+                      </el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="11">
+                    <el-form-item label="性别" prop="field108">
+                      <el-radio-group v-model="formData.field108" size="medium">
+                        <el-radio v-for="(item, index) in field108Options" :key="index" :disabled="item.disabled"
+                                  :label="item.value" border>{{ item.label }}
+                        </el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="24">
+                    <el-form-item size="large">
+                      <el-button type="primary" @click="submitForm">提交</el-button>
+                      <el-button @click="resetForm">重置</el-button>
+                    </el-form-item>
+                  </el-col>
+                </el-form>
+              </el-row>
+            </div>
+
+          </el-tab-pane>
+          <el-tab-pane label="修改密码" name="resetPwd">
+
+          </el-tab-pane>
+        </el-tabs>
+      </el-card>
+    </div>
   </div>
-  </el-card>
 </template>
 
 <script>
+
+
+import {mapState} from "vuex";
+
 export default {
-  components: {},
-  props: [],
+  name: 'personalinfo',
   data() {
     return {
       formData: {
-        field105: null,
+        mobile: user.name,
+        field108: undefined,
       },
-      rules: {},
-      field105Action: '/api/upload/avatar', // 修改为后端接收上传的地址
-      field105fileList: [],
-    }
+      rules: {
+        mobile: [{
+          required: true,
+          message: '请输入用户名称',
+          trigger: 'blur'
+        }, {
+          pattern: /^1(3|4|5|7|8|9)\d{9}$/,
+          message: '手机号格式错误',
+          trigger: 'blur'
+        }],
+        field108: [{
+          required: true,
+          message: '性别不能为空',
+          trigger: 'change'
+        }],
+      },
+      field108Options: [{
+        "label": "男",
+        "value": 1
+      }, {
+        "label": "女",
+        "value": 2
+      }],
+      activeTab: 'userinfo',
+    };
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {
-    submitForm() {
-      this.$refs['elForm'].validate(valid => {
-        if (!valid) return
-        // TODO 提交表单
-      })
-    },
-    resetForm() {
-      this.$refs['elForm'].resetFields()
-    },
-    field105BeforeUpload(file) {
-      let isRightSize = file.size / 1024 / 1024 < 5
-      if (!isRightSize) {
-        this.$message.error('文件大小超过 5MB')
-      }
-      return isRightSize
-    },
-    handleSuccess(response) {
-      // 处理上传成功后的逻辑，比如更新文件列表等
-      console.log('上传成功', response)
-    },
-  }
+  computed: {
+    ...mapState([
+      'user'
+    ]),
+  },
 }
+// 组件逻辑
 </script>
 
-<style>
-.el-upload__tip {
-  line-height: 1.2;
+<style scoped>
+.card-container {
+  display: flex;
+  justify-content: space-between;
 }
-.xxx {
-  width: 300px;
+
+.personalcard {
+  flex: 0.3;
   height: 500px;
-  margin: 0 auto;
+  margin: 0 10px;
 }
+
+.basecard {
+  flex: 0.7;
+  height: 400px;
+  margin: 0 10px;
+}
+
+.divider {
+  border-bottom: 1px solid #ebebeb; /* 设置边框颜色和宽度 */
+  margin: 10px 0; /* 根据需要调整上下边距 */
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: #10e9f1;
+}
+
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
 </style>
